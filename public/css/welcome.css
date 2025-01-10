@@ -1,0 +1,40 @@
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar-menu {
+    transition: .5s;
+}
+
+@media screen and (max-width: 768px) {
+    .hambuger-menu {
+        display: block !important;
+    }
+
+    .navbar-menu {
+        position: fixed;
+        left: -100%;
+        flex-direction: column !important;
+        width: 80%;
+        height: 100vh;
+        background-color: white;
+    }
+
+    .navbar-menu li {
+        width: 100%;
+        padding: 12px;
+        text-align: center;
+    }
+
+    .navbar-menu li:hover {
+        background-color: lightgray;
+    }
+
+    .navbar-menu.active {
+        left: 0;
+
+    }
+
+}
