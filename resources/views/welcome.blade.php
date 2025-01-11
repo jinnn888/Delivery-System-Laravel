@@ -25,7 +25,7 @@
             <ul class='navbar-menu flex flex-row gap-4 items-center shadow-lg md:shadow-none'>
                 <li><a href="" class='text-green-700 font-semibold hover:underline'>Home</a></li>
                 <li><a href="" class='text-green-700 font-semibold hover:underline'>Items</a></li>
-                <li class='bg-green-600 md:bg-none'><a href="" class=' rounded text-white md:text-white md:bg-green-700 px-4 py-2 font-semibold hover:bg-green-800 duration-200'>Login</a></li>
+                <li class='bg-green-600 md:bg-none'><a href="/login" class=' rounded text-white md:text-white md:bg-green-700 px-4 py-2 font-semibold hover:bg-green-800 duration-200'>Login</a></li>
             </ul>
             <div class="hamburger-menu md:hidden" id="hamburger-menu">
                 <span>&#9776;</span> <!-- Hamburger icon -->
