@@ -38,3 +38,13 @@
     }
 
 }
+
+.animate {
+    opacity: 0;
+    transform: translateY(70%);
+    transition: opacity 1s ease-in, transform 0.4s ease-in;
+}
+.animate.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}

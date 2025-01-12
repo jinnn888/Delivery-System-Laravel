@@ -38,27 +38,27 @@
     {{-- Hero Se'ction --}}
     <section class='text-center flex flex-col items-center justify-center bg-gray-700 h-[65vh] w-100'>
         <div class=''>
-            <h2 class='text-5xl text-green-800 font-bold'>Welcome to PenJy!</h2>
+            <h2 class='animate text-5xl text-green-800 font-bold'>Welcome to PenJy!</h2>
         </div>
     </section>
 
     {{-- Items Section --}}
     <section class='mt-4'>
         <div class='w-full text-center flex items-center justify-center'>
-            <h2 class='text-4xl  text-green-800' style="font-family: 'Lora';">Your Neighborhood Delivery Service</h2>
+            <h2 class='animate text-4xl  text-green-800' style="font-family: 'Lora';">Your Neighborhood Delivery Service</h2>
         </div>  
-        <div class='mt-6 w-full flex items-center justify-center'>
+        <div class='mt-6 w-full flex items-center justify-center flex-wrap'>
             @foreach ($products as $product)
                 {{-- Item --}}
-                <div class='shadow-md rounded flex flex-col gap-4 p-4'>
+                <div class='animate shadow-sm  flex flex-col gap-4 p-4'>
                     {{-- Product Image --}}
-                    <img class='w-[300px] object-cover rounded' src="{{ $product->getFirstMediaUrl('product_images')}}">
+                    <img width='250' class=' object-cover rounded' src="{{ $product->getFirstMediaUrl('product_images')}}">
                     {{-- Product Description --}}
                     <div class='flex flex-col items-center'>
                         <h2 class='text-gray-600 font-semibold text-lg '>{{ $product->name  }}</h2>
                         {{-- <p>{{ Str::limit($product->description, 40) }}</p> --}}
                         <span class='text-green-700 font-bold text-2xl'>₱{{ $product->price }}</span>
-                        <button class='bg-green-800 text-white rounded shadow-md px-4 py-1 mt-2'>View item</button>
+                        <button class='bg-green-800 text-sm text-white rounded shadow-md px-4 py-1 mt-2'>View item</button>
                     </div>
                 </div>
             @endforeach
@@ -74,6 +74,23 @@
     hamburgerMenu.addEventListener('click', () => {
         navMenu.classList.toggle('active');
     })
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+            }   else {
+                entry.target.classList.remove('in-view');
+            }
+        })
+    }, )
+    const animates = document.querySelectorAll('.animate')
+
+    animates.forEach((animate) => {
+        observer.observe(animate);
+    })
+
+
 
 </script>
 
