@@ -4,19 +4,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RiderController;
 use App\Http\Controllers\ProductController;
-use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function (Request $request) {
-    $products = Product::query();
-    
-    if ($category = $request->get('category')) {
-        $products->where('category', $category);
-    } 
 
-    $products = $products->get();
-    return view('welcome', compact('products'));
-});
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/product/{product}', [HomeController::class, 'showProduct'])->name('home.product.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
