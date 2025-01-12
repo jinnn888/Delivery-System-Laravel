@@ -30,7 +30,7 @@
 
                 		<div>
 		                	<x-input-label>Phone Number</x-input-label>
-		                	<x-text-input value="{{ old('phone_number') }}" name='phone_number' type='number' class='w-full'/>
+		                	<x-text-input placeholder='+63368302214' value="{{ old('phone_number') }}" name='phone_number' type='number' class='w-full'/>
             				<x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
                 		</div>
 
@@ -68,7 +68,13 @@
 
                 		<div>
 	                		<x-input-label>Image</x-input-label>
-	                		<x-text-input  name='image' class='w-full' type='file'/>
+	                		<input 
+	                			type="file" 
+	                			name="image" 
+	                			class='dropify' 
+	                			data-show-remove="false"
+	                			data-allowed-file-extensions="jpg png jpeg"
+	                		>
             				<x-input-error :messages="$errors->get('image')" class="mt-2" />
 
                 		</div>
@@ -80,4 +86,7 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    	$('.dropify').dropify();
+    </script>
 </x-app-layout>
