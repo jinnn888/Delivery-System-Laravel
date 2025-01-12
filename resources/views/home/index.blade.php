@@ -58,7 +58,7 @@
 				<h2 class='text-gray-600 font-semibold text-lg '>{{ $product->name  }}</h2>
 				{{-- <p>{{ Str::limit($product->description, 40) }}</p> --}}
 				<span class='text-green-700 font-bold text-2xl'>₱{{ $product->price }}</span>
-				<a href='{{ route('home.product.show', $product) }}' class='bg-green-800 text-sm text-white rounded shadow-md px-4 py-1 mt-2'>View item</a>
+					<a href='{{ route('home.product.show', $product) }}' class='bg-green-800 text-sm text-white rounded shadow-md px-4 py-1 mt-2'>View item</a>
 			</div>
 		</div>
 		@endforeach

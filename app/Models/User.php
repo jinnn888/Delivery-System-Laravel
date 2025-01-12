@@ -61,4 +61,8 @@ class User extends Authenticatable implements HasMedia
         return \Carbon\Carbon::parse($this->birth_date)->age;
     }
 
+    public function carts() {
+        return $this->belongsToMany(Cart::class);
+    }
+
 }

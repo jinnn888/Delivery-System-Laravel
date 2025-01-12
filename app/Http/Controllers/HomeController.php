@@ -23,4 +23,8 @@ class HomeController extends Controller
         return view('home.show-product', compact('product'));
     }
 
+    public function userCart() {
+        dd('hello'); 
+    }
+
 }

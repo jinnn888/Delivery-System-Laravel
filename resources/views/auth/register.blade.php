@@ -1,4 +1,7 @@
 <x-guest-layout>
+{{--     $table->string('address')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('birth_date')->nullable(); --}}
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -14,6 +17,27 @@
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <!-- Address -->
+        <div class='mt-4'>
+            <x-input-label for="address" :value="__('Address')" />
+            <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required   />
+            <x-input-error :messages="$errors->get('address')" class="mt-2" />
+        </div>
+
+        <!-- Birth date -->
+        <div class='mt-4'>
+            <x-input-label for="birth_date" :value="__('Birth Date')" />
+            <x-text-input id="birth_date" class="block mt-1 w-full" type="date" name="birth_date" :value="old('birth_date')" required  />
+            <x-input-error :messages="$errors->get('birth_date')" class="mt-2" />
+        </div>
+
+        <!-- Phone Number -->
+        <div class='mt-4'>
+            <x-input-label for="phone_number" :value="__('Phone Number')" />
+            <x-text-input id="phone_number" class="block mt-1 w-full" type="number" name="phone_number" :value="old('phone_number')" required  />
+            <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
         </div>
 
         <!-- Password -->

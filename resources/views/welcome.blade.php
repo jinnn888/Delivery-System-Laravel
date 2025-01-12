@@ -8,7 +8,7 @@
 
     {{-- Font Awesome --}}
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-        
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,8 +28,29 @@
             </div>
             <ul class='navbar-menu flex flex-row gap-4 items-center shadow-lg md:shadow-none'>
                 <li><a href="/" class='text-green-700 font-semibold hover:underline'>Home</a></li>
-                <li><a href="" class='text-green-700 font-semibold hover:underline'>Items</a></li>
-                <li class='bg-green-600 md:bg-none'><a href="/login" class=' rounded text-white md:text-white md:bg-green-700 px-4 py-2 font-semibold hover:bg-green-800 duration-200'>Login</a></li>
+               
+                @auth
+                    <a 
+                        href='{{ route('home.user.cart') }}'
+                        type='submit'
+                        class='bg-green-800 text-md text-white rounded shadow-md px-4 py-1'>
+                        <i class="fas fa-shopping-cart"></i>
+                        {{ auth()->user()->carts->count() }}
+                    </a>
+                <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <li class='cursor-pointer rounded font-semibold py-1 px-4 shadow-sm bg-green-700 md:bg-none text-white p-2' href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </li>
+                        </form>
+                @endauth
+                @guest
+                    <li class='bg-green-600 md:bg-none'><a href="/login" class=' rounded text-white md:text-white md:bg-green-700 px-4 py-2 font-semibold hover:bg-green-800 duration-200'>Login</a></li>
+                @endguest
             </ul>
             <div class="hamburger-menu md:hidden" id="hamburger-menu">
                 <span>&#9776;</span> <!-- Hamburger icon -->
