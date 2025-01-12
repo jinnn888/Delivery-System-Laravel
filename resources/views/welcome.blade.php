@@ -46,13 +46,9 @@
         <div class='animate w-full text-center flex flex-col items-center justify-center'>
             <h2 class=' text-4xl  text-green-800' style="font-family: 'Lora';">Your Neighborhood Delivery Service</h2>
             <div class='mt-4 flex flex-row items-center justify-center gap-4'>
-                <form action='/' method='GET'>
-                    @csrf
-                    <input type="hidden" name="category" value='recent'>
-                    <button class='p-2 {{ request()->get("category") == "recent" ? "bg-green-700 text-white" : "border border-green-700 text-green-700" }}'>
-                        RECENT
-                    </button>
-                </form>
+                <a href='/' class='p-2 {{ request()->query() == [] ? "bg-green-700 text-white" : "border border-green-700 text-green-700" }}'>
+                    RECENT
+                </a>
                 <form action='/' method='GET'>
                     @csrf
                     <input type="hidden" name="category" value='merchandise'>

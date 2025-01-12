@@ -5,9 +5,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RiderController;
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
-Route::get('/', function () {
-    $products = Product::all();
+Route::get('/', function (Request $request) {
+    $products = Product::query();
+    
+    if ($category = $request->get('category')) {
+        $products->where('category', $category);
+    } 
+
+    $products = $products->get();
     return view('welcome', compact('products'));
 });
 
