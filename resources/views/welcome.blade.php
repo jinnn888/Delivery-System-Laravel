@@ -23,7 +23,7 @@
                 <h4 class='text-lg text-green-700 font-bold tracking-wide'>PenJy</h4>
             </div>
             <ul class='navbar-menu flex flex-row gap-4 items-center shadow-lg md:shadow-none'>
-                <li><a href="" class='text-green-700 font-semibold hover:underline'>Home</a></li>
+                <li><a href="/" class='text-green-700 font-semibold hover:underline'>Home</a></li>
                 <li><a href="" class='text-green-700 font-semibold hover:underline'>Items</a></li>
                 <li class='bg-green-600 md:bg-none'><a href="/login" class=' rounded text-white md:text-white md:bg-green-700 px-4 py-2 font-semibold hover:bg-green-800 duration-200'>Login</a></li>
             </ul>
@@ -36,9 +36,10 @@
 
 
     {{-- Hero Se'ction --}}
-    <section class='text-center flex flex-col items-center justify-center bg-gray-700 h-[65vh] w-100'>
+    <section class='hero text-center flex flex-col items-center justify-center bg-gray-900 h-[65vh] w-100'>
+        <div class='background'></div>
         <div class=''>
-            <h2 class='animate text-5xl text-green-800 font-bold'>Welcome to PenJy!</h2>
+            <h2 class='animate text-5xl text-white font-bold'>Welcome to PenJy!</h2>
         </div>
     </section>
 
