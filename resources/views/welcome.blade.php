@@ -46,24 +46,22 @@
     <section class='mt-4'>
         <div class='w-full text-center flex items-center justify-center'>
             <h2 class='text-4xl  text-green-800' style="font-family: 'Lora';">Your Neighborhood Delivery Service</h2>
-        </div>    
+        </div>  
         <div class='mt-6 w-full flex items-center justify-center'>
-            <div class='shadow-md rounded flex flex-col gap-4 p-4'>
-                {{-- Product Image --}}
-                <img class='w-[300px] object-cover rounded' src="{{ asset('images/items/nj-pc-1.png') }}">
-                {{-- Product Description --}}
-                <div class=''>
-                    <h2 class='text-gray-600 font-semibold text-lg '>NewJeans Photo Card</h2>
-                    <p>{{ Str::limit('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 40) }}</p>
-
-                    <button class='bg-green-800 text-white rounded shadow-md px-4 py-1 mt-2'>View item</button>
+            @foreach ($products as $product)
+                {{-- Item --}}
+                <div class='shadow-md rounded flex flex-col gap-4 p-4'>
+                    {{-- Product Image --}}
+                    <img class='w-[300px] object-cover rounded' src="{{ $product->getFirstMediaUrl('product_images')}}">
+                    {{-- Product Description --}}
+                    <div class='flex flex-col items-center'>
+                        <h2 class='text-gray-600 font-semibold text-lg '>{{ $product->name  }}</h2>
+                        {{-- <p>{{ Str::limit($product->description, 40) }}</p> --}}
+                        <span class='text-green-700 font-bold text-2xl'>₱{{ $product->price }}</span>
+                        <button class='bg-green-800 text-white rounded shadow-md px-4 py-1 mt-2'>View item</button>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </section>
 

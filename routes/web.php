@@ -3,9 +3,12 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RiderController;
+use App\Http\Controllers\ProductController;
+use App\Models\Product;
 
 Route::get('/', function () {
-    return view('welcome');
+    $products = Product::all();
+    return view('welcome', compact('products'));
 });
 
 Route::get('/dashboard', function () {
@@ -14,6 +17,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function() {
     Route::resource('riders', RiderController::class);
+    Route::resource('products', ProductController::class);
 
 });
 

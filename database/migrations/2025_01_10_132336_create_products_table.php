@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->integer('price');
+            $table->string('category');
             $table->integer('stock');
-            $table->integer('category');
-            $table->string('status'); // outofstuck or active
+            $table->string('status')->default('active'); // out of stock, sale, active
             $table->timestamps();
         });
     }

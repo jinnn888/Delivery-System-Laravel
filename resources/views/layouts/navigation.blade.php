@@ -19,6 +19,11 @@
                     <x-nav-link :href="route('riders.index')" :active="request()->routeIs('riders.*')">
                         {{ __('Riders') }}
                     </x-nav-link>
+
+                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                        {{ __('Products') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 

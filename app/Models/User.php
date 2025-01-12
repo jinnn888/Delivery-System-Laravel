@@ -57,4 +57,8 @@ class User extends Authenticatable implements HasMedia
           ->height(90);
     }
 
+    public function getAgeAttribute() {
+        return \Carbon\Carbon::parse($this->birth_date)->age;
+    }
+
 }
