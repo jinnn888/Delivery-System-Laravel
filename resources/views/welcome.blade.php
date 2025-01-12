@@ -33,8 +33,6 @@
         </nav>
     </header>
 
-
-
     {{-- Hero Se'ction --}}
     <section class='hero text-center flex flex-col items-center justify-center bg-gray-900 h-[65vh] w-100'>
         <div class='background'></div>
@@ -45,55 +43,93 @@
 
     {{-- Items Section --}}
     <section class='mt-4'>
-        <div class='w-full text-center flex items-center justify-center'>
-            <h2 class='animate text-4xl  text-green-800' style="font-family: 'Lora';">Your Neighborhood Delivery Service</h2>
+        <div class='animate w-full text-center flex flex-col items-center justify-center'>
+            <h2 class=' text-4xl  text-green-800' style="font-family: 'Lora';">Your Neighborhood Delivery Service</h2>
+            <div class='mt-4 flex flex-row items-center justify-center gap-4'>
+                <form action='/' method='GET'>
+                    @csrf
+                    <input type="hidden" name="category" value='recent'>
+                    <button class='p-2 {{ request()->get("category") == "recent" ? "bg-green-700 text-white" : "border border-green-700 text-green-700" }}'>
+                        RECENT
+                    </button>
+                </form>
+                <form action='/' method='GET'>
+                    @csrf
+                    <input type="hidden" name="category" value='merchandise'>
+                    <button class='p-2 {{ request()->get("category") == "merchandise" ? "bg-green-700 text-white" : "border border-green-700 text-green-700" }}'>
+                        MERCHANDISE
+                    </button>
+                </form>
+                <form action='/' method='GET'>
+                    @csrf
+                    <input type="hidden" name="category" value='albums'>
+                    <button class='p-2 {{ request()->get("category") == "albums" ? "bg-green-700 text-white" : "border border-green-700 text-green-700" }}'>
+                        ALBUMS
+                    </button>
+                </form>
+                <form action='/' method='GET'>
+                    @csrf
+                    <input type="hidden" name="category" value='bundle'>
+                    <button class='p-2 {{ request()->get("category") == "bundle" ? "bg-green-700 text-white" : "border border-green-700 text-green-700" }}'>
+                        BUNDLE
+                    </button>
+                </form>
+                <form action='/' method='GET'>
+                    @csrf
+                    <input type="hidden" name="category" value='special_edition'>
+                    <button class='p-2 {{ request()->get("category") == "special_edition" ? "bg-green-700 text-white" : "border border-green-700 text-green-700" }}'>
+                        SPECIAL EDITION
+                    </button>
+                </form>
+            </div>
+
         </div>  
         <div class='mt-6 w-full flex items-center justify-center flex-wrap'>
             @foreach ($products as $product)
-                {{-- Item --}}
-                <div class='animate shadow-sm  flex flex-col gap-4 p-4'>
-                    {{-- Product Image --}}
-                    <img width='250' class=' object-cover rounded' src="{{ $product->getFirstMediaUrl('product_images')}}">
-                    {{-- Product Description --}}
-                    <div class='flex flex-col items-center'>
-                        <h2 class='text-gray-600 font-semibold text-lg '>{{ $product->name  }}</h2>
-                        {{-- <p>{{ Str::limit($product->description, 40) }}</p> --}}
-                        <span class='text-green-700 font-bold text-2xl'>₱{{ $product->price }}</span>
-                        <button class='bg-green-800 text-sm text-white rounded shadow-md px-4 py-1 mt-2'>View item</button>
-                    </div>
+            {{-- Item --}}
+            <div class='animate shadow-sm  flex flex-col gap-4 p-4'>
+                {{-- Product Image --}}
+                <img width='250' class=' object-cover rounded' src="{{ $product->getFirstMediaUrl('product_images')}}">
+                {{-- Product Description --}}
+                <div class='flex flex-col items-center'>
+                    <h2 class='text-gray-600 font-semibold text-lg '>{{ $product->name  }}</h2>
+                    {{-- <p>{{ Str::limit($product->description, 40) }}</p> --}}
+                    <span class='text-green-700 font-bold text-2xl'>₱{{ $product->price }}</span>
+                    <button class='bg-green-800 text-sm text-white rounded shadow-md px-4 py-1 mt-2'>View item</button>
                 </div>
+            </div>
             @endforeach
         </div>
     </section>
 
 
 
-<script type="text/javascript">
-    const hamburgerMenu = document.querySelector('.hamburger-menu')
-    const navMenu = document.querySelector('.navbar-menu')
+    <script type="text/javascript">
+        const hamburgerMenu = document.querySelector('.hamburger-menu')
+        const navMenu = document.querySelector('.navbar-menu')
 
-    hamburgerMenu.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-    })
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-            }   else {
-                entry.target.classList.remove('in-view');
-            }
+        hamburgerMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
         })
-    }, )
-    const animates = document.querySelectorAll('.animate')
 
-    animates.forEach((animate) => {
-        observer.observe(animate);
-    })
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }   else {
+                    entry.target.classList.remove('in-view');
+                }
+            })
+        }, )
+        const animates = document.querySelectorAll('.animate')
+
+        animates.forEach((animate) => {
+            observer.observe(animate);
+        })
 
 
 
-</script>
+    </script>
 
 </body>
 <html>
