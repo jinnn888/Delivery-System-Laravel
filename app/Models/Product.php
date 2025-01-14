@@ -10,4 +10,9 @@ class Product extends Model implements HasMedia
 {
     use InteractsWithMedia;
     protected $guarded = ['id'];
+
+    public function carts() {
+        return $this->hasMany(Cart::class);
+    }
+
 }
