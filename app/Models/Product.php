@@ -14,5 +14,4 @@ class Product extends Model implements HasMedia
     public function carts() {
         return $this->hasMany(Cart::class);
     }
-
 }

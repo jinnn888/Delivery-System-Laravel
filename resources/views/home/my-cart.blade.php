@@ -3,55 +3,42 @@
 
 <section class='mt-4'>
 	<div class='mt-6 w-full flex items-center justify-center flex-wrap'>
-		@foreach ($carts as $cart)
-		{{-- Item --}}
+		@foreach ($carts as $index => $cart)
 		<div class='animate shadow-sm  flex flex-row gap-4 p-4'>
-			{{-- Product Image --}}
-			<img width='150' class=' object-cover rounded' src="{{ $cart->product->getFirstMediaUrl('product_images')}}">
-			{{-- Product Description --}}
-			<div class='flex flex-col items-center justify-between'>
-				<div>
-					<h2 class='text-gray-600 font-semibold text-2xl'>{{ $cart->product->name  }}</h2>
-					<br>
-				</div>
-				{{-- <p>{{ Str::limit($product->description, 40) }}</p> --}}
+			<img width='150' class=' object-cover rounded' src="{{ $cart->items[$index]->product->getFirstMediaUrl('product_images')}}">
+			<div >
+				<h2 class='text-gray-600 text-2xl'>{{ $cart->items[$index]->product->name  }}</h2>
 				<div class='flex flex-col gap-2'>
-					{{-- <span class='text-green-700 font-bold text-2xl'>₱{{ $cart->total_price }}</span> --}}
 					<div class='flex flex-col'>
 						<form action='{{ route('cart.store') }}' method="POST">
 							@csrf
 							<div>
-								<button type='button' class='plus-amount bg-gray-200 px-4 py-2 text-gray-500'>
-									+
-								</button>
-								<input id='amount' class='shadow-sm border-gray-200 rounded' type="number" name="amount" value='{{ $cart->amount }}' disabled class='w-fit'>
-								<button type='button' class='minus-amount bg-gray-200 px-4 py-2 text-gray-500'>
-									-
-								</button>
+							<input id='amount' class='shadow-sm border-gray-200 rounded' type="number" name="amount" value='{{ $cart->amount }}'  class='w-fit'>
 							</div>
-							<p>Total: <span id='total' class='text-green-700 font-semibold'>₱{{ $cart->total_price }}</span></p>
-							<input id='_total' type="hidden" name="total_price" value="{{ $cart->product->price }}">
-							<input id='_total' type="hidden" name="product_id" value="{{ $cart->product->id }}">
+							{{-- <p>Total: <span id='total' class='text-green-700 font-semibold'>₱{{ $cart->price }}</span></p> --}}
+							<input id='_total' type="hidden" name="total_price" value="{{ $cart->price }}">
+							{{-- <input id='_total' type="hidden" name="product_id" value="{{ $cart->product->id }}"> --}}
 							<input id='_amount' type="hidden" name="amount" value="1">
-							<form action='{{ route('checkouts.store') }}' method="POST">
-								@csrf
-								<input type="hidden" name="cart_id" value='{{ $cart->id }}'>
-								<input type="hidden" name="user_id" value='{{ auth()->id() }}'>
-								<button 
-									type='submit'
-									class='bg-green-800 text-md text-white rounded shadow-md px-4 py-1 mt-2'>
-									<i class="fas fa-shopping-cart"></i>
-									 Checkout
-								</button>
-							</form>
-							<form action='{{ route('cart.destroy', $cart ) }}' method='POST'>
-								@csrf
-								@method('DELETE')
-								<button
-									class='bg-red-800 text-md text-white rounded shadow-md px-4 py-1 mt-2'>
-									Remove from cart								
-								</button>
-							</form>
+							<div class='flex flex-row gap-2'>
+								<form action='{{ route('checkouts.store') }}' method="POST">
+									@csrf
+									<input type="hidden" name="cart_id" value='{{ $cart->id }}'>
+									<input type="hidden" name="user_id" value='{{ auth()->id() }}'>
+									<button 
+										type='submit'
+										class='bg-green-800 text-md text-white rounded shadow-md px-4 py-1 mt-2'>
+										 Checkout
+									</button>
+								</form>
+								<form action='{{ route('cart.destroy', $cart ) }}' method='POST'>
+									@csrf
+									@method('DELETE')
+									<button
+										class='bg-red-800 text-md text-white rounded shadow-md px-4 py-1 mt-2'>
+										<i class="fas fa-trash"></i>
+									</button>
+								</form>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -61,7 +48,7 @@
 
 	</div>
 </section>
-<script type="text/javascript">
+{{-- <script type="text/javascript">
 	const plus = document.querySelector('.plus-amount');
 	const minus = document.querySelector('.minus-amount');
 	const amount = document.querySelector('#amount')
@@ -95,5 +82,5 @@
 			}
 		})
 
-</script>
+</script> --}}
 @endsection

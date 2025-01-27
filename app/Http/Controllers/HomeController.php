@@ -25,9 +25,9 @@ class HomeController extends Controller
 
     public function userCart() {
         // $carts = auth()->user()->carts()->with('product')->get();
-        $carts = auth()->user()->cart()->with('items')->get();
+        $carts = auth()->user()->cart()->with('items.product')->get();
 
-        dd($carts);
+        // dd($carts);
 
         return view('home.my-cart', compact('carts'));
     }
