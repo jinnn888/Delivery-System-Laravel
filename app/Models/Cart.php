@@ -9,11 +9,10 @@ class Cart extends Model
     protected $guarded =  ['id'];
 
     public function user() {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function product() {
-        return $this->belongsTo(Product::class);
+    public function items() {
+        return $this->hasMany(CartItem::class);
     }
-
 }

@@ -24,23 +24,22 @@
     <header>
         <nav class='flex flex-row bg-white justify-between p-6 '>
             <div>
-                <h4 class='text-lg text-green-700 font-bold tracking-wide'>PenJy</h4>
+                <h4 class='text-lg text-green-700 font-bold tracking-wide'>Artists's e-com.</h4>
             </div>
             <ul class='navbar-menu flex flex-row gap-4 items-center shadow-lg md:shadow-none'>
                 <li><a href="/" class='text-green-700 font-semibold hover:underline'>Home</a></li>
-               
                 @auth
                     <a 
                         href='{{ route('home.user.cart') }}'
                         type='submit'
                         class='bg-green-800 text-md text-white rounded shadow-md px-4 py-1'>
                         <i class="fas fa-shopping-cart"></i>
-                        {{ auth()->user()->carts->count() }}
+
+                        {{ auth()->user()->cart->items()->exists() ? auth()->user()->cart->items->count() : 0  }}
                     </a>
                 <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <li class='cursor-pointer rounded font-semibold py-1 px-4 shadow-sm bg-green-700 md:bg-none text-white p-2' href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                     this.closest('form').submit();">

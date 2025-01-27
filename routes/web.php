@@ -6,6 +6,7 @@ use App\Http\Controllers\RiderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CheckoutController;
 
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -28,6 +29,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
     Route::get('/cart', [HomeController::class, 'userCart'])->name('home.user.cart');
+    Route::delete('/cart/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    Route::resource('checkouts', CheckoutController::class);
 
 });
 

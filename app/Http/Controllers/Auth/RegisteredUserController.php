@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Cart;
 
 class RegisteredUserController extends Controller
 {
@@ -45,6 +46,10 @@ class RegisteredUserController extends Controller
             'birth_date' => $request->birth_date,
             'phone_number' => $request->phone_number,
             'password' => Hash::make($request->password),
+        ]);
+
+        Cart::create([
+            'user_id' => $user->id
         ]);
 
         event(new Registered($user));

@@ -5,7 +5,7 @@
 <section class='hero text-center flex flex-col items-center justify-center bg-gray-900 h-[65vh] w-100'>
 	<div class='background'></div>
 	<div class=''>
-		<h2 class='animate text-5xl text-white font-bold'>Welcome to PenJy!</h2>
+		<h2 class='animate text-5xl text-white font-bold'>Artists's e-com.</h2>
 	</div>
 </section>
 
@@ -55,14 +55,25 @@
 			<img width='250' class=' object-cover rounded' src="{{ $product->getFirstMediaUrl('product_images')}}">
 			{{-- Product Description --}}
 			<div class='flex flex-col items-center'>
-				<h2 class='text-gray-600 font-semibold text-lg '>{{ $product->name  }}</h2>
+				<h2 class='text-gray-600 text-lg '>{{ $product->name  }}</h2>
 				{{-- <p>{{ Str::limit($product->description, 40) }}</p> --}}
-				<span class='text-green-700 font-bold text-2xl'>₱{{ $product->price }}</span>
-					<a href='{{ route('home.product.show', $product) }}' class='bg-green-800 text-sm text-white rounded shadow-md px-4 py-1 mt-2'>View item</a>
-			</div>
+				<span class='text-green-700 text-2xl'>₱{{ $product->price }}</span>
+				<form action='{{ route('cart.store') }}' method="POST">
+					@csrf
+					<input id='_total' type="hidden" name="total_price" value="{{ $product->price }}">
+					<input id='_total' type="hidden" name="product_id" value="{{ $product->id }}">
+					<input id='_amount' type="hidden" name="amount" value="1">
+					<button 
+					type='submit'
+					class='bg-green-800 text-md text-white rounded shadow-md px-4 py-1 mt-2'>
+					 <i class="fas fa-shopping-cart"></i> Add to cart
+				</button>
+			</form>
+			{{-- <a href='{{ route('home.product.show', $product) }}' class='bg-green-800 text-sm text-white rounded shadow-md px-4 py-1 mt-2'>View item</a> --}}
 		</div>
-		@endforeach
 	</div>
+	@endforeach
+</div>
 </section>
 
 @endsection
