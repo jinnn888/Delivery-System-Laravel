@@ -51,8 +51,12 @@
                     <li class='bg-green-600 md:bg-none'><a href="/login" class=' rounded text-white md:text-white md:bg-green-700 px-4 py-2 font-semibold hover:bg-green-800 duration-200'>Login</a></li>
                 @endguest
             </ul>
-            <div class="hamburger-menu md:hidden" id="hamburger-menu">
-                <span>&#9776;</span> <!-- Hamburger icon -->
+            <div class="hamburger-menu md:hidden cursor-pointer" id="hamburger-menu">
+                <div class='flex flex-col gap-[3px] w-[30px]'>
+                    <div class='line bg-green-800 rounded-sm h-[4px] w-[100%]'></div>
+                    <div class='line bg-green-800 rounded-sm h-[4px] w-[100%]'></div>
+                    <div class='line bg-green-800 rounded-sm h-[4px] w-[100%]'></div>
+                </div>
             </div>
         </nav>
     </header>
@@ -67,6 +71,7 @@
 
         hamburgerMenu.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+            hamburgerMenu.classList.toggle('active')
         })
 
         const observer = new IntersectionObserver((entries) => {

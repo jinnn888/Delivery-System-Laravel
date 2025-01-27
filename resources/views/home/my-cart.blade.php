@@ -2,48 +2,50 @@
 @section('content')
 
 <section class='mt-4'>
-	<div class='mt-6 w-full flex items-center justify-center flex-wrap'>
+	<div class='mt-6 w-full flex gap-2 items-center justify-center flex-wrap'>
 		@foreach ($carts as $index => $cart)
-		<div class='animate shadow-sm  flex flex-row gap-4 p-4'>
-			<img width='150' class=' object-cover rounded' src="{{ $cart->items[$index]->product->getFirstMediaUrl('product_images')}}">
-			<div >
-				<h2 class='text-gray-600 text-2xl'>{{ $cart->items[$index]->product->name  }}</h2>
-				<div class='flex flex-col gap-2'>
-					<div class='flex flex-col'>
-						<form action='{{ route('cart.store') }}' method="POST">
-							@csrf
-							<div>
-							<input id='amount' class='shadow-sm border-gray-200 rounded' type="number" name="amount" value='{{ $cart->amount }}'  class='w-fit'>
-							</div>
-							{{-- <p>Total: <span id='total' class='text-green-700 font-semibold'>₱{{ $cart->price }}</span></p> --}}
-							<input id='_total' type="hidden" name="total_price" value="{{ $cart->price }}">
-							{{-- <input id='_total' type="hidden" name="product_id" value="{{ $cart->product->id }}"> --}}
-							<input id='_amount' type="hidden" name="amount" value="1">
-							<div class='flex flex-row gap-2'>
-								<form action='{{ route('checkouts.store') }}' method="POST">
+			@foreach ($cart->items as $item)
+				<div class='animate shadow-sm  flex flex-row gap-4 p-4 bg-white'>
+					<img width='150' class=' object-cover rounded' src="{{ $item->product->getFirstMediaUrl('product_images')}}">
+					<div >
+						<h2 class='text-gray-600 text-2xl'>{{ $item->product->name  }}</h2>
+						<div class='flex flex-col gap-2'>
+							<div class='flex flex-col'>
+								<form action='{{ route('cart.store') }}' method="POST">
 									@csrf
-									<input type="hidden" name="cart_id" value='{{ $cart->id }}'>
-									<input type="hidden" name="user_id" value='{{ auth()->id() }}'>
-									<button 
-										type='submit'
-										class='bg-green-800 text-md text-white rounded shadow-md px-4 py-1 mt-2'>
-										 Checkout
-									</button>
-								</form>
-								<form action='{{ route('cart.destroy', $cart ) }}' method='POST'>
-									@csrf
-									@method('DELETE')
-									<button
-										class='bg-red-800 text-md text-white rounded shadow-md px-4 py-1 mt-2'>
-										<i class="fas fa-trash"></i>
-									</button>
+									<div>
+									<input id='amount' class='shadow-sm border-gray-200 rounded' type="number" name="amount" value='{{ $cart->amount }}'  class='w-fit'>
+									</div>
+									<input id='_total' type="hidden" name="total_price" value="{{ $cart->price }}">
+									<input id='_amount' type="hidden" name="amount" value="1">
+									<div class='flex flex-row gap-2'>
+										<form action='{{ route('checkouts.store') }}' method="POST">
+											@csrf
+											<input type="hidden" name="cart_id" value='{{ $cart->id }}'>
+											<input type="hidden" name="user_id" value='{{ auth()->id() }}'>
+											<button 
+												type='submit'
+												class='bg-green-800 text-md text-white rounded shadow-md px-4 py-1 mt-2'>
+												 Checkout
+											</button>
+										</form>
+										<form action='{{ route('cart.destroy', $cart ) }}' method='POST'>
+											@csrf
+											@method('DELETE')
+											<button
+												class='bg-red-800 text-md text-white rounded shadow-md px-4 py-1 mt-2'>
+												<i class="fas fa-trash"></i>
+											</button>
+										</form>
+									</div>
 								</form>
 							</div>
-						</form>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+
+
+			@endforeach
 		@endforeach
 
 	</div>

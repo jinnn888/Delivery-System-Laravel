@@ -12,7 +12,7 @@
 <section class='mt-4'>
 	<div class='animate w-full text-center flex flex-col items-center justify-center'>
 		<h2 class=' text-4xl  text-green-800' style="font-family: 'Lora';">Albums, Merch, and More – All for the Fans.</h2>
-		<div class='mt-4 flex flex-row items-center justify-center gap-4'>
+		<div class='mt-4 flex flex-row items-center justify-center gap-4 flex-wrap'>
 			<a href='/' class='p-2 {{ request()->query() == [] ? "bg-green-700 text-white" : "border border-green-700 text-green-700" }}'>
 				RECENT
 			</a>
