@@ -30,7 +30,7 @@
                 <li><a href="/" class='text-green-700 font-semibold hover:underline'>Home</a></li>
                 @auth
                     <a 
-                        href='{{ route('home.user.cart') }}'
+                        href='{{ route('cart.index') }}'
                         type='submit'
                         class='bg-green-800 text-md text-white rounded shadow-md px-4 py-1'>
                         <i class="fas fa-shopping-cart"></i>

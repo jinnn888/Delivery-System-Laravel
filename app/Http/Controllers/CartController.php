@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
-use App\Models\CartUser;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -13,7 +12,11 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        $carts = auth()->user()->cart()->with('items.product')->get();
+
+        // dd($carts->items);
+
+        return view('home.my-cart', compact('carts'));
     }
 
     /**
@@ -35,7 +38,6 @@ class CartController extends Controller
             'price' => $request->total_price,
         ]);
 
-        // auth()->user()->carts()->attach($cart->id);
 
         return redirect()->back()->with('success', 'Item added to cart.');
     }
@@ -51,12 +53,11 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CartUser $cart_user)
+    public function destroy(CartItem $item)
     {
-        dd($cart_user);
-        // auth()->user()->carts()->dettach($cart->id);
-        $cart_user->delete();
+        dd($item);
+        // $item->delete();
 
-        return redirect()->back()->with('success', 'Item removed from my cart.');
+        return redirect()->back()->with('success', 'Item removed from cart successully.');
     }
 }

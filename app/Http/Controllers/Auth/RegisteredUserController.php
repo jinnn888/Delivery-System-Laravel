@@ -35,8 +35,8 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'phone_number' => 'required|phone:PH',
-            'birth_date' => 'required|date',
-            'address' => 'required',
+            // 'birth_date' => 'required|date',
+            // 'address' => 'required',
         ]);
 
         $user = User::create([
@@ -59,6 +59,7 @@ class RegisteredUserController extends Controller
         if (Auth::user()->role == 'admin') {
            return redirect(route('dashboard', absolute: false));
         }
+        
         return redirect(route('home', absolute: false));
 
     }

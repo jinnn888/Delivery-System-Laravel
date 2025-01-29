@@ -28,8 +28,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
-    Route::get('/cart', [HomeController::class, 'userCart'])->name('home.user.cart');
-    Route::delete('/cart/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::delete('/cart/{item}', [CartController::class, 'destroy'])->name('cart.destroy');
 
     Route::resource('checkouts', CheckoutController::class);
 

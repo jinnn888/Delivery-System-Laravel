@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('birth_date')->nullable();
-            $table->enum('role', ['client', 'admin', 'rider'])->default('client');
+            $table->enum('role', ['user', 'admin', 'rider'])->default('user');
             $table->rememberToken();
             $table->timestamps();
         });

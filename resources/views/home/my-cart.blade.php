@@ -19,8 +19,8 @@
 									<input id='_total' type="hidden" name="total_price" value="{{ $cart->price }}">
 									<input id='_amount' type="hidden" name="amount" value="1">
 									<div class='flex flex-row gap-2'>
-										<form action='{{ route('checkouts.store') }}' method="POST">
-											@csrf
+										{{-- <form action='{{ route('checkouts.store') }}' method="POST">
+											@csrf --}}
 											<input type="hidden" name="cart_id" value='{{ $cart->id }}'>
 											<input type="hidden" name="user_id" value='{{ auth()->id() }}'>
 											<button 
@@ -28,12 +28,14 @@
 												class='bg-green-800 text-md text-white rounded shadow-md px-4 py-1 mt-2'>
 												 Checkout
 											</button>
-										</form>
-										<form action='{{ route('cart.destroy', $cart ) }}' method='POST'>
+										{{-- </form> --}}
+										{{-- {{  dd($item->id); }} --}}
+										<form action='{{ route('cart.destroy', $item) }}' method='POST'>
 											@csrf
 											@method('DELETE')
 											<button
-												class='bg-red-800 text-md text-white rounded shadow-md px-4 py-1 mt-2'>
+												class='bg-red-800 text-md text-white rounded shadow-md px-4 py-1 mt-2'
+											>
 												<i class="fas fa-trash"></i>
 											</button>
 										</form>
